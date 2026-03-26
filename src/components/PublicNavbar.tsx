@@ -7,7 +7,7 @@ const navLinks = [
   { label: 'Beranda', to: '/' },
   
   { label: 'Menu Sekolah', to: '/menu-sekolah' },
-  { label: 'Laporan', to: '/laporan' },
+  // { label: 'Laporan', to: '/laporan' },
   { label: 'Monitoring Kasus', to: '/monitoring-kasus' },
   { label: 'Edukasi', to: '/edukasi' },
   { label: 'AI Scanner', to: '/ai-scanner' },

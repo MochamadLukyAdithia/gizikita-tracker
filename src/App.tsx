@@ -25,7 +25,7 @@ import {
 import LandingPage from "@/pages/public/LandingPage";
 
 import MenuSekolahPage from "@/pages/public/MenuSekolahPage";
-import LaporanPage from "@/pages/public/LaporanPage";
+import LaporanPage from "@/pages/public/MBGChatbot";
 import MonitoringKasusPage from "@/pages/public/MonitoringKasusPage";
 import EdukasiPage from "@/pages/public/EdukasiPage";
 import AIScannerPage from "@/pages/public/AIScannerPage";
@@ -89,7 +89,6 @@ const App = () => (
               <Route path="/" element={<LandingPage />} />
               <Route path="/dashboard" element={<LandingPage />} />
               <Route path="/menu-sekolah" element={<MenuSekolahPage />} />
-              <Route path="/laporan" element={<LaporanPage />} />
               <Route path="/monitoring-kasus" element={<MonitoringKasusPage />} />
               <Route path="/edukasi" element={<EdukasiPage />} />
               <Route path="/ai-scanner" element={<AIScannerPage />} />
