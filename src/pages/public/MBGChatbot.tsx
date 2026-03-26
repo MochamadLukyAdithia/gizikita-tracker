@@ -400,6 +400,23 @@ const TicketCard = ({ticket,data}) => {
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function MBGChatbot() {
   const [open,setOpen]         = useState(false);
+  useEffect(() => {
+      const handleOpenChatbot = (e) => {
+        setOpen(true);
+        if (e.detail === "lapor") {
+          setTimeout(() => {
+            startLapor();
+          }, 300);
+        }
+      };
+
+      window.addEventListener("openChatbot", handleOpenChatbot);
+
+      return () => {
+        window.removeEventListener("openChatbot", handleOpenChatbot);
+      };
+    }, []);
+
   const [messages,setMessages] = useState([]);
   const [input,setInput]       = useState("");
   const [typing,setTyping]     = useState(false);

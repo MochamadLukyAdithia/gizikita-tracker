@@ -9,8 +9,8 @@ const PublicLayout: React.FC = () => (
     <PublicNavbar />
     <main className="pt-16">
       <Outlet />
-      <MBGChatbot/>
     </main>
+      <MBGChatbot/>
     <Footer/>
   </div>
 );
