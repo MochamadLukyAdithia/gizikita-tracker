@@ -1,62 +1,61 @@
-# MBG Track
+# MBGTrack: Transformasi Ekosistem Monitoring Program MBG Berbasis AI Food Recognition, Chatbot Pelaporan Warga, dan Manajemen Limbah Berkelanjutan
 
-A web application for tracking MBG (Makan Bergizi Gratis) data, built with modern web technologies.
+## Institusi
+Universitas Jember
+
+## Anggota Tim
+- Ketua: Muhammad Hanif Prahasta
+- Anggota 1: Mochamad Luky Adithia
+- Anggota 2: Muhammad Nabil Baihaqi
+## Deskripsi Karya
+MBGTrack adalah platform monitoring cerdas yang dirancang untuk mendukung pengawasan dan akuntabilitas Program Makan Bergizi Gratis (MBG) secara menyeluruh. Latar belakang pembuatan platform ini berakar dari kebutuhan nyata akan sistem pemantauan gizi yang transparan, partisipatif, dan berkelanjutan di tengah pelaksanaan program MBG secara nasional.
+
+Platform ini mengangkat subtema utama adalah **Kesehatan** dan di dukung dengan subtema **Sosial**, dan **Lingkungan** dengan mengintegrasikan tiga pilar utama:
+1. **AI Food Recognition**  Teknologi pengenalan makanan berbasis kecerdasan buatan untuk memantau kualitas dan kandungan gizi menu MBG secara presisi.
+2. **Chatbot Pelaporan Publik** Sistem pelaporan interaktif berbasis chatbot yang memungkinkan warga melaporkan kondisi pelaksanaan program MBG secara mudah dan real-time.
+3. **Manajemen Limbah Berkelanjutan** Modul pemantauan dan pengelolaan limbah organik hasil program MBG untuk mendukung keberlanjutan lingkungan.
+
+Tujuan utama MBGTrack adalah meningkatkan transparansi, efisiensi, dan dampak positif program MBG bagi masyarakat luas, sejalan dengan tema INNOVATE (Impel Novelty, Navigate, Optimize, Validate, Advance Technological Endeavors) TECHSOFT 2026.
+
+## Link Website
+https://mbgtrack.vercel.app/
+
+---
 
 ## Tech Stack
-
 - **Vite** – Fast build tool and dev server
 - **TypeScript** – Type-safe JavaScript
 - **React** – UI framework
 - **shadcn-ui** – Accessible component library
 - **Tailwind CSS** – Utility-first CSS framework
 
-## Getting Started
+## Cara Menjalankan Proyek
 
-Make sure you have [Node.js & npm](https://github.com/nvm-sh/nvm#installing-and-updating) installed, then:
+Pastikan [Node.js & npm](https://github.com/nvm-sh/nvm#installing-and-updating) sudah terinstal, kemudian:
 
 ```sh
-# Step 1: Clone the repository
+# Step 1: Clone repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory
+# Step 2: Masuk ke direktori proyek
 cd <YOUR_PROJECT_NAME>
 
 # Step 3: Install dependencies
 npm i
 
-# Step 4: Start the development server
+# Step 4: Jalankan development server
 npm run dev
 ```
 
-## Editing the Code
-
-**Local IDE**
-
-Clone the repo, make changes in your preferred editor, then push. That's it.
-
-**GitHub (in-browser)**
-
-- Navigate to the file you want to edit.
-- Click the pencil icon (Edit) at the top right.
-- Make your changes and commit.
-
-**GitHub Codespaces**
-
-- Go to the main page of the repository.
-- Click the green **Code** button → **Codespaces** tab → **New codespace**.
-- Edit and commit directly from the browser-based editor.
-
-## Deployment
-
-You can deploy this project to any static hosting platform that supports Vite builds (e.g. Vercel, Netlify, or GitHub Pages).
+## Build untuk Produksi
 
 ```sh
-# Build for production
 npm run build
 ```
 
-The output will be in the `dist/` folder, ready to be served.
+Output akan tersimpan di folder `dist/`, siap untuk di-deploy.
 
-## Custom Domain
+## Deployment
 
-Configure a custom domain through your hosting provider's dashboard after deploying.
+Proyek ini dapat di-deploy ke platform hosting statis yang mendukung Vite build, seperti:
+- **Vercel**
