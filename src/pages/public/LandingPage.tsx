@@ -89,7 +89,7 @@ const MarqueeCol: React.FC<{ indices: number[]; dir: 'up' | 'down'; speed: numbe
   );
 };
 
-// ─── COUNT UP (DOM ref style – ala desain lama) ───────────────────────
+// ─── COUNT UP (DOM ref style) ─────────────────────────────────────────
 const useCountUp = (end: number) => {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -112,7 +112,7 @@ const useCountUp = (end: number) => {
   return ref;
 };
 
-// ─── COUNT UP (state style – untuk section merah) ────────────────────
+// ─── COUNT UP (state style) ───────────────────────────────────────────
 const CountUpStat: React.FC<{ end: number; suffix?: string }> = ({ end, suffix = '' }) => {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -149,7 +149,7 @@ const LandingPage: React.FC = () => {
 
   const features = [
     { icon: BarChart3,  title: 'Dashboard Real-time',    desc: 'Pantau statistik gizi dan laporan secara langsung dengan data terupdate.',           color: '#E8334A', bg: '#FFF0F2', num: '01', to: '/' },
-    { icon: ShieldCheck, title: 'Pelaporan Transparan',  desc: 'Laporkan masalah makanan dengan mudah dan pantau status tindak lanjutnya.',           color: '#2D6A4F', bg: '#EDFAF3', num: '02', to: '/laporan' },
+    { icon: ShieldCheck, title: 'Pelaporan Transparan',  desc: 'Laporkan masalah makanan dengan mudah dan pantau status tindak lanjutnya.',           color: '#2D6A4F', bg: '#EDFAF3', num: '02', to: '/monitoring-kasus' },
     { icon: Utensils,   title: 'Monitoring Menu',        desc: 'Lihat menu harian setiap sekolah beserta informasi nutrisi lengkap.',                  color: '#c9a000', bg: '#FFFBEA', num: '03', to: '/menu-sekolah' },
     { icon: HeartPulse, title: 'AI Scanner Gizi',        desc: 'Analisis kandungan gizi makanan dengan teknologi kecerdasan buatan.',                  color: '#8B0000', bg: '#FFF5F5', num: '04', to: '/ai-scanner' },
   ];
@@ -173,12 +173,190 @@ const LandingPage: React.FC = () => {
         .stat-mini { transition: transform .2s, box-shadow .2s; }
         .stat-mini:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
         .chart-card { border-radius: 20px; background: #fff; border: 1.5px solid #f0f0f0; padding: 1.5rem; }
+
+        /* ── RESPONSIVE BREAKPOINTS ── */
+
+        /* Hero section */
+        .hero-section {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          min-height: 100vh;
+          background: #E8334A;
+          overflow: hidden;
+        }
+        .hero-left {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 3rem 2.5rem 3rem 3rem;
+        }
+        .hero-right {
+          display: flex;
+          gap: 10px;
+          padding: 1.2rem 1.2rem 1.2rem 4rem;
+          overflow: hidden;
+          height: 100vh;
+          transform: rotate(-5deg) scale(1.1);
+          transform-origin: center center;
+        }
+        .hero-cta-row {
+          display: flex;
+          gap: 12px;
+        }
+
+        /* Dampak section */
+        .dampak-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.25rem;
+        }
+
+        /* Fitur section */
+        .fitur-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.1rem;
+        }
+
+        /* Dashboard stat mini cards */
+        .stat-mini-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+          margin-bottom: 1.75rem;
+        }
+
+        /* Chart rows */
+        .chart-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.25rem;
+          margin-bottom: 1.25rem;
+        }
+        .chart-row-last {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.25rem;
+        }
+
+        /* Stats banner */
+        .stats-banner {
+          background: #E8334A;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 3.5rem;
+        }
+
+        /* Photo stats grid */
+        .photo-stats-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem 5rem;
+          margin-bottom: 2.5rem;
+        }
+
+        /* ── TABLET (≤ 900px) ── */
+        @media (max-width: 900px) {
+          .hero-section {
+            grid-template-columns: 1fr;
+            min-height: auto;
+          }
+          .hero-left {
+            padding: 2.5rem 1.5rem;
+            order: 1;
+          }
+          .hero-right {
+            height: 280px;
+            padding: 1rem;
+            transform: rotate(0deg) scale(1);
+            order: 0;
+          }
+          .dampak-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          .fitur-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .stat-mini-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .chart-row,
+          .chart-row-last {
+            grid-template-columns: 1fr;
+          }
+          .stats-banner {
+            padding: 1rem 1.5rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+          }
+          .photo-stats-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+          }
+        }
+
+        /* ── MOBILE (≤ 600px) ── */
+        @media (max-width: 600px) {
+          .hero-section {
+            grid-template-columns: 1fr;
+            min-height: auto;
+          }
+          .hero-left {
+            padding: 2rem 1.2rem 1.5rem;
+            order: 1;
+          }
+          .hero-right {
+            height: 220px;
+            padding: 0.75rem;
+            transform: rotate(0deg) scale(1);
+            order: 0;
+          }
+          .hero-cta-row {
+            flex-direction: column;
+            gap: 10px;
+          }
+          .dampak-grid {
+            grid-template-columns: 1fr;
+            gap: 0.85rem;
+          }
+          .fitur-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+          }
+          .stat-mini-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+          }
+          .chart-row,
+          .chart-row-last {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+          }
+          .chart-card {
+            padding: 1rem;
+          }
+          .stats-banner {
+            padding: 1rem 1.2rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+          }
+          .photo-stats-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 1.5rem;
+          }
+        }
       `}</style>
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100vh', background: '#E8334A', overflow: 'hidden' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 2.5rem 3rem 3rem' }}>
-          <h1 style={{ ...N, fontSize: 'clamp(2rem,3.5vw,3.2rem)', fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: '1.2rem' }}>
+      <section className="hero-section">
+        <div className="hero-left">
+          <h1 style={{ ...N, fontSize: 'clamp(1.8rem,3.5vw,3.2rem)', fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: '1.2rem' }}>
             <ScrambledText className="scrambled-text-demo" radius={100} duration={1.2} speed={0.5} scrambleChars=".:">
               Pantau Program Makan <br /> Bergizi Gratis<br />
               Secara Akurat Melalui <br /> Jemari Anda
@@ -187,14 +365,12 @@ const LandingPage: React.FC = () => {
           <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.82rem', lineHeight: 1.75, maxWidth: 400, marginBottom: '2rem', textAlign: 'justify' }}>
             Platform kami menyediakan informasi seputar statistik gizi, penerima dan waste harian dari program MBG yang dilaksanakan oleh Badan Gizi Nasional
           </p>
-          <div style={{ display: 'flex', gap: 12 }}>
+          <div className="hero-cta-row">
             <Link
               to="#"
               onClick={(e) => {
                 e.preventDefault();
-                window.dispatchEvent(
-                  new CustomEvent("openChatbot", { detail: "lapor" })
-                );
+                window.dispatchEvent(new CustomEvent("openChatbot", { detail: "lapor" }));
               }}
               className="mbg-cta"
               style={{
@@ -221,51 +397,24 @@ const LandingPage: React.FC = () => {
               }}
             >
               <div style={{
-                width: 28,
-                height: 28,
-                background: 'rgba(255,255,255,0.25)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                alignSelf: 'flex-end',
-                marginBottom: 4
+                width: 28, height: 28, background: 'rgba(255,255,255,0.25)', borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-end', marginBottom: 4
               }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="7" y1="17" x2="17" y2="7"/>
-                  <polyline points="7 7 17 7 17 17"/>
+                  <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
                 </svg>
               </div>
-
-              <p style={{
-                fontSize: '0.72rem',
-                color: 'rgba(255,255,255,0.8)',
-                fontWeight: 600,
-                lineHeight: 1.4
-              }}>
+              <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.8)', fontWeight: 600, lineHeight: 1.4 }}>
                 Terdapat keluhan?<br />Segera Laporkan!
               </p>
-
-              <p style={{
-                fontSize: '1.4rem',
-                fontWeight: 900,
-                color: '#fff',
-                lineHeight: 1.1,
-                marginTop: 'auto'
-              }}>
-                Laporan
-              </p>
-
-              <span style={{
-                fontSize: '2rem',
-                position: 'absolute',
-                bottom: 8,
-                right: 10
-              }}>
-                🌮
-              </span>
+              <p style={{ fontSize: '1.4rem', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginTop: 'auto' }}>Laporan</p>
+              <span style={{ fontSize: '2rem', position: 'absolute', bottom: 8, right: 10 }}>🌮</span>
             </Link>
-            <Link to="/monitoring-kasus" className="mbg-cta" style={{ flex: 1, borderRadius: 18, padding: '1rem 1.2rem', background: '#F4C430', display: 'flex', flexDirection: 'column', gap: 4, textDecoration: 'none', position: 'relative', overflow: 'hidden', minHeight: 130, transition: 'transform .2s, box-shadow .2s' }}>
+            <Link to="/monitoring-kasus" className="mbg-cta" style={{
+              flex: 1, borderRadius: 18, padding: '1rem 1.2rem', background: '#F4C430',
+              display: 'flex', flexDirection: 'column', gap: 4, textDecoration: 'none',
+              position: 'relative', overflow: 'hidden', minHeight: 130, transition: 'transform .2s, box-shadow .2s'
+            }}>
               <div style={{ width: 28, height: 28, background: 'rgba(0,0,0,0.12)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-end', marginBottom: 4 }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2.5" strokeLinecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </div>
@@ -275,63 +424,24 @@ const LandingPage: React.FC = () => {
             </Link>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 10, padding: '1.2rem 1.2rem 1.2rem 4rem', overflow: 'hidden', height: '100vh', transform: 'rotate(-5deg) scale(1.1)', transformOrigin: 'center center' }}>
+
+        <div className="hero-right">
           {COL_SETUP.map((col, i) => <MarqueeCol key={i} {...col} />)}
         </div>
       </section>
 
-
-
       {/* ══════════════════════════════════════════════════════════════
           SECTION: DAMPAK NYATA PROGRAM MBG
       ══════════════════════════════════════════════════════════════ */}
-      <section style={{ 
-        padding: '5rem 0', 
-        position: 'relative', 
-        overflow: 'hidden',
-        background: '#E8334A'
-      }}>
-
-        {/* 🔥 DOT GRID BACKGROUND */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 0
-        }}>
+      <section style={{ padding: '5rem 0', position: 'relative', overflow: 'hidden', background: '#E8334A' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <DotGrid
-            dotSize={6}
-            gap={10}
-            baseColor="#e7e3ed"
-            activeColor="#d93a3a"
-            proximity={120}
-            shockRadius={250}
-            shockStrength={5}
-            resistance={750}
-            returnDuration={1.5}
+            dotSize={6} gap={10} baseColor="#e7e3ed" activeColor="#d93a3a"
+            proximity={120} shockRadius={250} shockStrength={5} resistance={750} returnDuration={1.5}
           />
         </div>
-
-        {/* 🔥 overlay biar warna merah tetap konsisten */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: '#E8334A',
-          opacity: 0.85,
-          zIndex: 1
-        }} />
-
-        {/* ❌ HAPUS grid pattern & blob lama */}
-
-        {/* 🔥 CONTENT */}
-        <div style={{ 
-          maxWidth: 900, 
-          margin: '0 auto', 
-          padding: '0 1.5rem', 
-          position: 'relative', 
-          zIndex: 2 
-        }}>
-
-          {/* Header */}
+        <div style={{ position: 'absolute', inset: 0, background: '#E8334A', opacity: 0.85, zIndex: 1 }} />
+        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 1.5rem', position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <h2 style={{ ...N, fontWeight: 900, color: '#fff', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', lineHeight: 1.15, margin: 0 }}>
               Dampak Nyata<br />Program MBG
@@ -341,65 +451,39 @@ const LandingPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }}>
+          <div className="dampak-grid">
             {[
               { emoji: '🏫', label: 'Sekolah Penerima', end: 12450, suffix: '' },
               { emoji: '👧', label: 'Siswa Penerima', end: 3200000, suffix: '+' },
               { emoji: '📋', label: 'Total Laporan Warga', end: 8920, suffix: '' },
             ].map((s, i) => (
               <div key={i} style={{
-                borderRadius: 20,
-                padding: '2rem 1.5rem',
-                textAlign: 'center',
-                background: 'rgba(255,255,255,0.13)',
-                backdropFilter: 'blur(12px)',
+                borderRadius: 20, padding: '2rem 1.5rem', textAlign: 'center',
+                background: 'rgba(255,255,255,0.13)', backdropFilter: 'blur(12px)',
                 border: '1px solid rgba(255,255,255,0.22)',
               }}>
                 <div style={{
-                  width: 52,
-                  height: 52,
-                  borderRadius: '50%',
-                  margin: '0 auto 1rem',
-                  background: 'rgba(255,255,255,0.22)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.5rem',
+                  width: 52, height: 52, borderRadius: '50%', margin: '0 auto 1rem',
+                  background: 'rgba(255,255,255,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem',
                 }}>
                   {s.emoji}
                 </div>
-
                 <CountUpStat end={s.end} suffix={s.suffix} />
-
-                <p style={{
-                  fontSize: '0.82rem',
-                  fontWeight: 700,
-                  color: 'rgba(255,255,255,0.85)',
-                  marginTop: '0.4rem'
-                }}>
+                <p style={{ fontSize: '0.82rem', fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginTop: '0.4rem' }}>
                   {s.label}
                 </p>
-
-                <div style={{
-                  height: 3,
-                  borderRadius: 99,
-                  width: '50%',
-                  margin: '1.2rem auto 0',
-                  background: 'rgba(255,255,255,0.35)'
-                }} />
+                <div style={{ height: 3, borderRadius: 99, width: '50%', margin: '1.2rem auto 0', background: 'rgba(255,255,255,0.35)' }} />
               </div>
             ))}
           </div>
-  </div>
-</section>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════════════════
           SECTION: FITUR UNGGULAN
       ══════════════════════════════════════════════════════════════ */}
       <section style={{ padding: '5rem 0', background: '#fff' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto', padding: '0 1.5rem' }}>
-          {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#FFF0F2', border: '1.5px solid #E8334A', borderRadius: 99, padding: '5px 16px', marginBottom: '1rem' }}>
               <span style={{ ...N, fontWeight: 900, color: '#E8334A', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Fitur Unggulan</span>
@@ -412,15 +496,12 @@ const LandingPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Feature cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.1rem' }}>
+          <div className="fitur-grid">
             {features.map((f, i) => (
               <Link key={i} to={f.to} className="feat-card" style={{
                 borderRadius: 20, padding: '1.75rem 1.4rem',
-                background: '#fff',
-                border: `1.5px solid #f0f0f0`,
-                position: 'relative', overflow: 'hidden',
-                textDecoration: 'none', display: 'block',
+                background: '#fff', border: `1.5px solid #f0f0f0`,
+                position: 'relative', overflow: 'hidden', textDecoration: 'none', display: 'block',
               }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = f.color;
@@ -431,15 +512,12 @@ const LandingPage: React.FC = () => {
                   (e.currentTarget as HTMLElement).style.boxShadow = 'none';
                 }}
               >
-                {/* Number watermark ala desain lama */}
                 <span style={{
                   position: 'absolute', top: 12, right: 14,
                   ...N, fontWeight: 900, fontSize: '1.15rem',
                   color: f.bg, WebkitTextStroke: `1.5px ${f.color}40`,
                   userSelect: 'none', letterSpacing: '-0.02em',
                 }}>{f.num}</span>
-
-                {/* Icon */}
                 <div style={{
                   width: 46, height: 46, borderRadius: 13,
                   background: f.bg, display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -447,15 +525,11 @@ const LandingPage: React.FC = () => {
                 }}>
                   <f.icon style={{ width: 22, height: 22, color: f.color }} />
                 </div>
-
                 <p style={{ ...N, fontWeight: 800, fontSize: '0.92rem', color: '#1a1a2e', marginBottom: '0.4rem' }}>{f.title}</p>
                 <p style={{ fontSize: '0.76rem', color: '#888', lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
-
-                {/* Arrow bubble ala desain lama */}
                 <div style={{
                   width: 28, height: 28, borderRadius: '50%', background: f.bg,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  marginTop: '1.2rem',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1.2rem',
                 }}>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={f.color} strokeWidth="2.5" strokeLinecap="round">
                     <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
@@ -472,8 +546,6 @@ const LandingPage: React.FC = () => {
       ══════════════════════════════════════════════════════════════ */}
       <section style={{ padding: '5rem 0', background: '#fafafa' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
-
-          {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#FFF0F2', border: '1.5px solid #E8334A', borderRadius: 99, padding: '5px 16px', marginBottom: '1rem' }}>
               <span style={{ ...N, fontWeight: 900, color: '#E8334A', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Dashboard Publik</span>
@@ -484,8 +556,7 @@ const LandingPage: React.FC = () => {
             <p style={{ color: '#888', fontSize: '0.86rem', marginTop: '0.5rem' }}>Data gizi dan monitoring secara real-time</p>
           </div>
 
-          {/* Stat mini cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.75rem' }}>
+          <div className="stat-mini-grid">
             {statCards.map((s, i) => (
               <div key={i} className="stat-mini" style={{ background: '#fff', borderRadius: 16, padding: '1.2rem', border: '1.5px solid #f0f0f0', display: 'flex', flexDirection: 'column', gap: 6 }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -502,8 +573,7 @@ const LandingPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Charts row 1 */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.25rem' }}>
+          <div className="chart-row">
             <div className="chart-card" style={{ borderTop: '3px solid #E8334A' }}>
               <p style={{ ...N, fontWeight: 800, fontSize: '0.9rem', color: '#1a1a2e', margin: '0 0 2px' }}>Distribusi Menu per Minggu</p>
               <p style={{ fontSize: '0.73rem', color: '#aaa', margin: '0 0 1rem' }}>Kalori dan protein dalam 6 minggu terakhir</p>
@@ -519,7 +589,6 @@ const LandingPage: React.FC = () => {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-
             <div className="chart-card" style={{ borderTop: '3px solid #2D6A4F' }}>
               <p style={{ ...N, fontWeight: 800, fontSize: '0.9rem', color: '#1a1a2e', margin: '0 0 2px' }}>Tren Skor Kualitas Gizi</p>
               <p style={{ fontSize: '0.73rem', color: '#aaa', margin: '0 0 1rem' }}>Peningkatan kualitas gizi rata-rata nasional</p>
@@ -541,8 +610,7 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Charts row 2 */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+          <div className="chart-row-last">
             <div className="chart-card" style={{ borderTop: '3px solid #8B0000' }}>
               <p style={{ ...N, fontWeight: 800, fontSize: '0.9rem', color: '#1a1a2e', margin: '0 0 2px' }}>Laporan Kasus per Bulan</p>
               <p style={{ fontSize: '0.73rem', color: '#aaa', margin: '0 0 1rem' }}>Jumlah laporan masuk dari warga</p>
@@ -556,7 +624,6 @@ const LandingPage: React.FC = () => {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-
             <div className="chart-card" style={{ borderTop: '3px solid #F4C430' }}>
               <p style={{ ...N, fontWeight: 800, fontSize: '0.9rem', color: '#1a1a2e', margin: '0 0 2px', textAlign: 'center' }}>Kualitas Gizi Keseluruhan</p>
               <p style={{ fontSize: '0.73rem', color: '#aaa', margin: '0 0 1rem', textAlign: 'center' }}>Skor pemenuhan standar nutrisi</p>
@@ -569,64 +636,58 @@ const LandingPage: React.FC = () => {
               </ResponsiveContainer>
             </div>
           </div>
-
         </div>
       </section>
 
-            {/* ── STATS BANNER ──────────────────────────────────────────── */}
-            <div style={{ background: '#E8334A', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 3.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ display: 'flex', gap: 4 }}>
-                  {[0.1, 0.2].map((op, i) => <div key={i} style={{ width: 0, height: 0, borderTop: '22px solid transparent', borderBottom: '22px solid transparent', borderLeft: `18px solid rgba(255,255,255,${op})` }} />)}
-                </div>
-                <span style={{ ...N, fontSize: '1.4rem', fontWeight: 900, color: '#fff' }}>Jumlah Total Laporan</span>
+      {/* ── STATS BANNER ──────────────────────────────────────────── */}
+      <div className="stats-banner">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: 4 }}>
+            {[0.1, 0.2].map((op, i) => (
+              <div key={i} style={{ width: 0, height: 0, borderTop: '22px solid transparent', borderBottom: '22px solid transparent', borderLeft: `18px solid rgba(255,255,255,${op})` }} />
+            ))}
+          </div>
+          <span style={{ ...N, fontSize: 'clamp(1rem, 3vw, 1.4rem)', fontWeight: 900, color: '#fff' }}>Jumlah Total Laporan</span>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div style={{ ...N, fontSize: 'clamp(1.8rem,5vw,2.6rem)', fontWeight: 900, color: '#fff', lineHeight: 1 }}>
+            <span ref={bannerRef as React.RefObject<HTMLSpanElement>}>0</span>
+          </div>
+          <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.8rem', fontWeight: 600 }}>Laporan</div>
+        </div>
+      </div>
+
+      {/* ── PHOTO STATS ───────────────────────────────────────────── */}
+      <div style={{ position: 'relative', minHeight: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/images/bg-siswa.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.75) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom,rgba(255,255,255,0.72) 0%,rgba(255,255,255,0.38) 40%,rgba(255,255,255,0.72) 100%)' }} />
+        <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '3rem 2rem' }}>
+          <div className="photo-stats-grid">
+            {[{ ref: s1Ref, label: 'Jumlah Sekolah\nPenerima MBG' }, { ref: s2Ref, label: 'Total Jumlah\nSiswa Penerima' }].map((item, i) => (
+              <div key={i} style={{ textAlign: 'center' }}>
+                <span ref={item.ref as React.RefObject<HTMLSpanElement>} style={{ ...N, fontSize: 'clamp(2.2rem,5vw,4.5rem)', fontWeight: 900, color: '#1a1a2e', display: 'block', lineHeight: 1 }}>0</span>
+                <p style={{ fontSize: '0.9rem', fontWeight: 700, color: '#1a1a2e', marginTop: 4, lineHeight: 1.35, whiteSpace: 'pre-line' }}>{item.label}</p>
               </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ ...N, fontSize: '2.6rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>
-                  <span ref={bannerRef as React.RefObject<HTMLSpanElement>}>0</span>
-                </div>
-                <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.8rem', fontWeight: 600 }}>Laporan</div>
-              </div>
-            </div>
-            {/* ── PHOTO STATS ───────────────────────────────────────────── */}
-            <div style={{ position: 'relative', minHeight: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/images/bg-siswa.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.75) 100%)' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom,rgba(255,255,255,0.72) 0%,rgba(255,255,255,0.38) 40%,rgba(255,255,255,0.72) 100%)' }} />
-              <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '3rem 2rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem 5rem', marginBottom: '2.5rem' }}>
-                  {[{ ref: s1Ref, label: 'Jumlah Sekolah\nPenerima MBG' }, { ref: s2Ref, label: 'Total Jumlah\nSiswa Penerima' }].map((item, i) => (
-                    <div key={i} style={{ textAlign: 'center' }}>
-                      <span ref={item.ref as React.RefObject<HTMLSpanElement>} style={{ ...N, fontSize: 'clamp(3rem,5vw,4.5rem)', fontWeight: 900, color: '#1a1a2e', display: 'block', lineHeight: 1 }}>0</span>
-                      <p style={{ fontSize: '0.9rem', fontWeight: 700, color: '#1a1a2e', marginTop: 4, lineHeight: 1.35, whiteSpace: 'pre-line' }}>{item.label}</p>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  to="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.dispatchEvent(
-                      new CustomEvent("openChatbot", { detail: "lapor" })
-                    );
-                  }}
-                  className="mbg-check"
-                  style={{
-                    display: 'inline-block',
-                    background: '#E8334A',
-                    color: '#fff',
-                    fontWeight: 800,
-                    fontSize: '0.95rem',
-                    padding: '.85rem 2.2rem',
-                    borderRadius: 50,
-                    textDecoration: 'none',
-                    transition: 'transform .2s, box-shadow .2s'
-                  }}
-                >
-                  Laporkan Masalah Anda !
-                </Link>
-              </div>
-            </div>
+            ))}
+          </div>
+          <Link
+            to="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(new CustomEvent("openChatbot", { detail: "lapor" }));
+            }}
+            className="mbg-check"
+            style={{
+              display: 'inline-block', background: '#E8334A', color: '#fff',
+              fontWeight: 800, fontSize: '0.95rem', padding: '.85rem 2.2rem',
+              borderRadius: 50, textDecoration: 'none', transition: 'transform .2s, box-shadow .2s'
+            }}
+          >
+            Laporkan Masalah Anda !
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
